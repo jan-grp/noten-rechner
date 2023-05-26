@@ -3,6 +3,7 @@
 import { ChangeEvent, useState, useEffect } from 'react'
 import styles from './page.module.css'
 import gradeTable from '../src/grade-table.json'
+import Cookie from 'js-cookie'
 
 const defaultFormFields = {
   lk1: -1,
@@ -33,7 +34,6 @@ export default function Home() {
       value = value[0]
     }
     
-
     setFormState({ ...formState, [name]: parseInt(value) })
   }
 
@@ -64,6 +64,25 @@ export default function Home() {
     return 0
   }
 
+  const handleSave = () => {
+    for(let i in formState) {
+      Cookie.set(i, formState[i])
+    }
+  }
+
+  useEffect(() => {
+    for(let i in defaultFormFields) {
+      const storedValue = Cookie.get(i)
+      const newState = defaultFormFields
+      if(storedValue !== undefined) {
+        setFormState({ ...formState, [i]: parseInt(storedValue) })
+        newState[i] = parseInt(storedValue)
+      
+      }
+      setFormState(newState)
+    }
+  }, [])
+
   useEffect(() => {
     setGradePoints(calculateGradePoints(formState))
   }, [formState])
@@ -82,6 +101,8 @@ export default function Home() {
         <form
           className={styles.form}
         >
+          <label>Kurs</label>
+          <label>Note(0-15)</label>
           <label>Leistungskurs 1: </label>
           <input
             min="0"
@@ -172,10 +193,18 @@ export default function Home() {
           />
         </form>
       </div>
+      <button 
+        onClick={handleSave}
+        className={styles.saveButton}
+      >
+        speichern
+      </button>
       <span>Punkte: {gradePoints} / 900</span>
       {
         grade !== 0 ? <h1 className={styles.grade}>⌀ {grade}</h1> : <span>nicht bestanden</span>
-      } 
+      }
+
+      
     </main>
   )
 }
