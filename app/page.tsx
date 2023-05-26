@@ -5,7 +5,11 @@ import styles from './page.module.css'
 import gradeTable from '../src/grade-table.json'
 import Cookie from 'js-cookie'
 
-const defaultFormFields = {
+type FormState = {
+  [key: string]: number
+}
+
+const defaultFormFields: FormState = {
   lk1: -1,
   lk2: -1,
   gk1: -1,
@@ -66,7 +70,9 @@ export default function Home() {
 
   const handleSave = () => {
     for(let i in formState) {
-      Cookie.set(i, formState[i])
+      if(i in formState) {
+        Cookie.set(i, formState[i].toString())
+      }
     }
   }
 
