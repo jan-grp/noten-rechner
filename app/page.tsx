@@ -26,21 +26,6 @@ export default function Home() {
   const [gradePoints, setGradePoints] = useState(0)
   const [grade, setGrade] = useState(0)
 
-  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
-    let { name, value } = e.target
-    if(value === "") {
-      value = "-1"
-    }
-
-    if(value.length > 2) value = value.slice(0,2)
-
-    if(parseInt(value) > 15 || parseInt(value) < -1) {
-      value = value[0]
-    }
-    
-    setFormState({ ...formState, [name]: parseInt(value) })
-  }
-
   const calculateGradePoints = (formState: typeof defaultFormFields) => { 
     const { lk1,lk2,gk1,gk2,mdl1,mdl2,jhr1,jhr2 } = formState
     const lk1GradePoint = lk1 === -1 ? 0 : lk1 * 13
@@ -66,6 +51,22 @@ export default function Home() {
       }
     }
     return 0
+  }
+
+  const handleFormChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target
+
+    if(value === "") {
+      value = "-1"
+    }
+
+    if(value.length > 2) value = value.slice(0,2)
+
+    if(parseInt(value) > 15 || parseInt(value) < -1) {
+      value = value[0]
+    }
+    
+    setFormState({ ...formState, [name]: parseInt(value) })
   }
 
   const handleSave = () => {

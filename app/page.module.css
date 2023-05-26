@@ -49,7 +49,7 @@
   display: grid;
   grid-template-columns: [subject] auto [grade] auto;
   row-gap: 18px;
-  column-gap: 38px;
+  column-gap: 26px;
 }
 
 .saveButton {
@@ -67,6 +67,7 @@
 .form input {
   width: 50px;
   text-align: center;
+  z-index: 10;
 }
 
 .grade {
