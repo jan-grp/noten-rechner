@@ -72,7 +72,7 @@ export default function Home() {
   const handleSave = () => {
     for(let i in formState) {
       if(i in formState) {
-        Cookie.set(i, formState[i].toString())
+        Cookie.set(i, formState[i].toString(), { expires: 365 })
       }
     }
   }

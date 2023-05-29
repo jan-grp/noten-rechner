@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Abitschnitt',
-  description: 'Abischnitt berechnen für Waldforfschüler NRW',
+  title: 'Abischnitt',
+  description: 'Abischnitt berechnen Schloss Hamborn',
 }
 
 export default function RootLayout({
