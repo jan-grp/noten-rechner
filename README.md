@@ -1,3 +1,7 @@
+# what is this?
+This allows students of Waldorfschulen to calculate their final Abitur degree. The calculations behind this are different from other schools, so using other calculators would not work these students.
+Calculations persist over different browser sessions via cookies.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
